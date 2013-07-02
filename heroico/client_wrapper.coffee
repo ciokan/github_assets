@@ -1,3 +1,4 @@
+#	Test
 class Heroico
 	constructor: ->
 		@create_wrapper_div()
