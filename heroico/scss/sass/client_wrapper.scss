@@ -1,0 +1,43 @@
+$height: 450px;
+$width: 350px;
+
+#hr_client_wrapper {
+	position: fixed;
+	bottom: -421px;
+	right: 20px;
+	height: $height;
+	width: $width;
+	
+	&.open {
+		bottom: 0;
+		#hr_inner {
+			#hr_toggle_handle {
+				cursor: move;
+			}
+		}
+	}
+	
+	#hr_inner {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		
+		#hr_toggle_handle {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 60px;
+			height: 29px;
+			cursor: pointer;
+		}
+	
+		iframe {
+			border: none;
+			background: transparent;
+			margin: 0;
+			padding: 0;
+			height: $height;
+			width: $width;
+		}
+	}
+}

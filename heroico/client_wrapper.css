@@ -1,0 +1,40 @@
+/* line 4, scss/sass/client_wrapper.scss */
+#hr_client_wrapper {
+  position: fixed;
+  bottom: -421px;
+  right: 20px;
+  height: 450px;
+  width: 350px;
+}
+/* line 11, scss/sass/client_wrapper.scss */
+#hr_client_wrapper.open {
+  bottom: 0;
+}
+/* line 14, scss/sass/client_wrapper.scss */
+#hr_client_wrapper.open #hr_inner #hr_toggle_handle {
+  cursor: move;
+}
+/* line 20, scss/sass/client_wrapper.scss */
+#hr_client_wrapper #hr_inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* line 25, scss/sass/client_wrapper.scss */
+#hr_client_wrapper #hr_inner #hr_toggle_handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 60px;
+  height: 29px;
+  cursor: pointer;
+}
+/* line 34, scss/sass/client_wrapper.scss */
+#hr_client_wrapper #hr_inner iframe {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  height: 450px;
+  width: 350px;
+}

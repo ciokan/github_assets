@@ -1,32 +1,52 @@
-#	Test
 class Heroico
 	constructor: ->
-		@create_wrapper_div()
-		@add_chat_frame()
+		@create_tags()
+		@load_events()
+		@set_window_position()
 	
-	create_wrapper_div: ->
-		@wrapper_div = $('<div></div>').attr("id", "hr_wrapper").appendTo("body")
-	
-	add_chat_frame: ->
-		@chat_frame = $('<iframe></iframe>').attr({
-			src: "http://localhost:4000/"+user_id,
-			style: "border: none; \
-					background: transparent;\
-					margin: 0; \
-					padding: 0; \
-					position: absolute; \
-					bottom: 0; \
-					right: 20px; \
-					height: 450px; \
-					width: 350px"
-		}).appendTo(@wrapper_div)
+	set_window_position: ->
+		if amplify.store('heroico.chat_window_open') and amplify.store('heroico.chat_window_open') == true
+			@wrapper_div.addClass "open"
 
-load_jquery = (cb)->
-	# Load the script
-	script = document.createElement("SCRIPT")
-	script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	script.type = "text/javascript"
-	document.getElementsByTagName("head")[0].appendChild script
+	load_events: ->
+		parent = @wrapper_div
+		@toggle_handle.click ->
+			if parent.hasClass "open"
+				window.amplify.store('heroico.chat_window_open', false)
+			else
+				window.amplify.store('heroico.chat_window_open', true)
+			parent.toggleClass "open"
+
+	create_tags: ->
+		@wrapper_div = $('<div></div>').attr({
+			id: "hr_client_wrapper"
+		}).appendTo("body")
+		
+		@wrapper_inner_div = $('<div></div>').attr({
+			id: "hr_inner"
+		}).appendTo(@wrapper_div)
+		
+		@toggle_handle = $('<div></div>').attr({
+			id: "hr_toggle_handle"
+		}).prependTo(@wrapper_inner_div)
+
+		@chat_frame = $('<iframe></iframe>').attr({
+			src: "http://localhost:4000/"+user_id
+		}).appendTo(@wrapper_inner_div)
+
+load_requirements = (cb)->
+	styles = document.createElement("link")
+	styles.setAttribute("rel", "stylesheet")
+	styles.setAttribute("type", "text/css")
+	styles.setAttribute("href", "client_wrapper.css")
+
+	document.getElementsByTagName("head")[0].appendChild styles
+
+	jquery = document.createElement("SCRIPT")
+	jquery.src = "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	jquery.type = "text/javascript"
+	document.getElementsByTagName("head")[0].insertBefore(jquery, document.getElementsByTagName("head")[0].firstChild)
+
   
 	# Poll for jQuery to come into existance
 	checkReady = (callback) ->
@@ -37,8 +57,10 @@ load_jquery = (cb)->
 				checkReady callback
 			), 100
 
-	checkReady ($) -> cb()
+	checkReady ($) ->
+		$.getScript "//cdnjs.cloudflare.com/ajax/libs/amplifyjs/1.1.0/amplify.min.js", (data, textStatus, jqxhr) ->
+			cb()
 
-window.jQuery || load_jquery(->
+window.jQuery || load_requirements(->
 	hr = new Heroico()
 )
