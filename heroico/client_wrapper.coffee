@@ -1,9 +1,16 @@
 class Heroico
 	constructor: ->
+		@load_pubnub()
 		@create_tags()
 		@load_events()
 		@set_window_position()
-	
+
+	load_pubnunb: ->
+		pubnub.subscribe
+			channel : "channel-"+amplify.store('heroico.session_id'),
+			message : (m) ->
+				alert m
+
 	set_window_position: ->
 		if amplify.store('heroico.chat_window_open') and amplify.store('heroico.chat_window_open') == true
 			@wrapper_div.addClass "open"
@@ -47,7 +54,6 @@ load_requirements = (cb)->
 	jquery.type = "text/javascript"
 	document.getElementsByTagName("head")[0].insertBefore(jquery, document.getElementsByTagName("head")[0].firstChild)
 
-  
 	# Poll for jQuery to come into existance
 	checkReady = (callback) ->
 		if window.jQuery

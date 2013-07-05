@@ -4,10 +4,20 @@
   Heroico = (function() {
 
     function Heroico() {
+      this.load_pubnub();
       this.create_tags();
       this.load_events();
       this.set_window_position();
     }
+
+    Heroico.prototype.load_pubnunb = function() {
+      return pubnub.subscribe({
+        channel: "channel-" + amplify.store('heroico.session_id'),
+        message: function(m) {
+          return alert(m);
+        }
+      });
+    };
 
     Heroico.prototype.set_window_position = function() {
       if (amplify.store('heroico.chat_window_open') && amplify.store('heroico.chat_window_open') === true) {
