@@ -39,5 +39,16 @@ $width: 350px;
 			height: $height;
 			width: $width;
 		}
+
+		#hr_popup {
+			position: absolute;
+			bottom: 8px;
+			right: 14px;
+			color: white;
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-size: 12px;
+			font-weight: bold;
+			text-decoration: underline;
+		}
 	}
 }

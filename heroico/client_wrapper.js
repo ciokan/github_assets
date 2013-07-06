@@ -4,20 +4,10 @@
   Heroico = (function() {
 
     function Heroico() {
-      this.load_pubnub();
       this.create_tags();
       this.load_events();
       this.set_window_position();
     }
-
-    Heroico.prototype.load_pubnunb = function() {
-      return pubnub.subscribe({
-        channel: "channel-" + amplify.store('heroico.session_id'),
-        message: function(m) {
-          return alert(m);
-        }
-      });
-    };
 
     Heroico.prototype.set_window_position = function() {
       if (amplify.store('heroico.chat_window_open') && amplify.store('heroico.chat_window_open') === true) {
@@ -39,6 +29,8 @@
     };
 
     Heroico.prototype.create_tags = function() {
+      var self;
+      self = this;
       this.wrapper_div = $('<div></div>').attr({
         id: "hr_client_wrapper"
       }).appendTo("body");
@@ -48,6 +40,20 @@
       this.toggle_handle = $('<div></div>').attr({
         id: "hr_toggle_handle"
       }).prependTo(this.wrapper_inner_div);
+      this.popup_anchor = $("<a></a>").attr({
+        id: "hr_popup",
+        href: "javascript:void(0)"
+      }).appendTo(this.wrapper_inner_div).html("Pop-out").click(function() {
+        var height, left, newwindow, top, width;
+        self.wrapper_div.removeClass("open");
+        window.amplify.store('heroico.chat_window_open', false);
+        height = 450;
+        width = 400;
+        left = (screen.width / 2) - (width / 2);
+        top = (screen.height / 2) - (height / 2);
+        newwindow = window.open("http://localhost:4000/" + user_id, 'Heroico Popup Window', 'screenY=' + top + ',screenX=' + left + ',height=' + height + ',width=' + width);
+        return newwindow.focus();
+      });
       return this.chat_frame = $('<iframe></iframe>').attr({
         src: "http://localhost:4000/" + user_id
       }).appendTo(this.wrapper_inner_div);

@@ -1,15 +1,8 @@
 class Heroico
 	constructor: ->
-		@load_pubnub()
 		@create_tags()
 		@load_events()
 		@set_window_position()
-
-	load_pubnunb: ->
-		pubnub.subscribe
-			channel : "channel-"+amplify.store('heroico.session_id'),
-			message : (m) ->
-				alert m
 
 	set_window_position: ->
 		if amplify.store('heroico.chat_window_open') and amplify.store('heroico.chat_window_open') == true
@@ -25,6 +18,7 @@ class Heroico
 			parent.toggleClass "open"
 
 	create_tags: ->
+		self = @
 		@wrapper_div = $('<div></div>').attr({
 			id: "hr_client_wrapper"
 		}).appendTo("body")
@@ -36,6 +30,21 @@ class Heroico
 		@toggle_handle = $('<div></div>').attr({
 			id: "hr_toggle_handle"
 		}).prependTo(@wrapper_inner_div)
+
+		@popup_anchor = $("<a></a>").attr({
+			id: "hr_popup",
+			href: "javascript:void(0)"
+		}).appendTo(@wrapper_inner_div).html("Pop-out").click ->
+			self.wrapper_div.removeClass "open"
+			window.amplify.store('heroico.chat_window_open', false)
+
+			#	Popup
+			height = 450
+			width = 400
+			left = (screen.width/2) - (width/2)
+			top = (screen.height/2) - (height/2)
+			newwindow = window.open "http://localhost:4000/"+user_id,'Heroico Popup Window','screenY='+top+',screenX='+left+',height='+height+',width='+width
+			newwindow.focus()
 
 		@chat_frame = $('<iframe></iframe>').attr({
 			src: "http://localhost:4000/"+user_id

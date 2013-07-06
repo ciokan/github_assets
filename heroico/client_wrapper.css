@@ -38,3 +38,14 @@
   height: 450px;
   width: 350px;
 }
+/* line 43, scss/sass/client_wrapper.scss */
+#hr_client_wrapper #hr_inner #hr_popup {
+  position: absolute;
+  bottom: 8px;
+  right: 14px;
+  color: white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: underline;
+}
