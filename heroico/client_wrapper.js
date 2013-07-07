@@ -70,10 +70,12 @@
     styles.setAttribute("type", "text/css");
     styles.setAttribute("href", "client_wrapper.css");
     document.getElementsByTagName("head")[0].appendChild(styles);
-    jquery = document.createElement("SCRIPT");
-    jquery.src = "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
-    jquery.type = "text/javascript";
-    document.getElementsByTagName("head")[0].insertBefore(jquery, document.getElementsByTagName("head")[0].firstChild);
+    if (!window.jQuery) {
+      jquery = document.createElement("SCRIPT");
+      jquery.src = "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
+      jquery.type = "text/javascript";
+      document.getElementsByTagName("head")[0].insertBefore(jquery, document.getElementsByTagName("head")[0].firstChild);
+    }
     checkReady = function(callback) {
       if (window.jQuery) {
         return callback(jQuery);
@@ -90,7 +92,7 @@
     });
   };
 
-  window.jQuery || load_requirements(function() {
+  load_requirements(function() {
     var hr;
     return hr = new Heroico();
   });

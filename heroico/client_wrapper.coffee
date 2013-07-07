@@ -58,10 +58,11 @@ load_requirements = (cb)->
 
 	document.getElementsByTagName("head")[0].appendChild styles
 
-	jquery = document.createElement("SCRIPT")
-	jquery.src = "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	jquery.type = "text/javascript"
-	document.getElementsByTagName("head")[0].insertBefore(jquery, document.getElementsByTagName("head")[0].firstChild)
+	if not window.jQuery
+		jquery = document.createElement("SCRIPT")
+		jquery.src = "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+		jquery.type = "text/javascript"
+		document.getElementsByTagName("head")[0].insertBefore(jquery, document.getElementsByTagName("head")[0].firstChild)
 
 	# Poll for jQuery to come into existance
 	checkReady = (callback) ->
@@ -76,6 +77,6 @@ load_requirements = (cb)->
 		$.getScript "//cdnjs.cloudflare.com/ajax/libs/amplifyjs/1.1.0/amplify.min.js", (data, textStatus, jqxhr) ->
 			cb()
 
-window.jQuery || load_requirements(->
+load_requirements(->
 	hr = new Heroico()
 )
