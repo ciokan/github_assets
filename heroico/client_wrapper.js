@@ -68,7 +68,7 @@
     styles = document.createElement("link");
     styles.setAttribute("rel", "stylesheet");
     styles.setAttribute("type", "text/css");
-    styles.setAttribute("href", "client_wrapper.css");
+    styles.setAttribute("href", "http://ciokan.github.io/github_assets/heroico/client_wrapper.css");
     document.getElementsByTagName("head")[0].appendChild(styles);
     if (!window.jQuery) {
       jquery = document.createElement("SCRIPT");
