@@ -43,11 +43,11 @@ class Heroico
 			width = 400
 			left = (screen.width/2) - (width/2)
 			top = (screen.height/2) - (height/2)
-			newwindow = window.open "http://www.heroico.com/"+user_id,'Heroico Popup Window','screenY='+top+',screenX='+left+',height='+height+',width='+width
+			newwindow = window.open "http://client.heroico.com/"+user_id,'Heroico Popup Window','screenY='+top+',screenX='+left+',height='+height+',width='+width
 			newwindow.focus()
 
 		@chat_frame = $('<iframe></iframe>').attr({
-			src: "http://www.heroico.com/"+user_id
+			src: "http://client.heroico.com/"+user_id
 		}).appendTo(@wrapper_inner_div)
 
 load_requirements = (cb)->
