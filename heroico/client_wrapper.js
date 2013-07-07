@@ -51,11 +51,11 @@
         width = 400;
         left = (screen.width / 2) - (width / 2);
         top = (screen.height / 2) - (height / 2);
-        newwindow = window.open("http://192.168.1.5:4000/" + user_id, 'Heroico Popup Window', 'screenY=' + top + ',screenX=' + left + ',height=' + height + ',width=' + width);
+        newwindow = window.open("http://www.heroico.com/" + user_id, 'Heroico Popup Window', 'screenY=' + top + ',screenX=' + left + ',height=' + height + ',width=' + width);
         return newwindow.focus();
       });
       return this.chat_frame = $('<iframe></iframe>').attr({
-        src: "http://192.168.1.5:4000/" + user_id
+        src: "http://www.heroico.com/" + user_id
       }).appendTo(this.wrapper_inner_div);
     };
 
