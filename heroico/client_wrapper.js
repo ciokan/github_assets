@@ -17,7 +17,7 @@
       var hr;
       hr = this;
       return setInterval(function() {
-        $.get("http://client.heroico.com/" + user_id + "/meta", function(data) {
+        $.getJSON("http://client.heroico.com/" + user_id + "/meta?callback=res", function(data) {
           if (data.data) return this.account_meta = data;
         });
         return hr.show_status_widgets();

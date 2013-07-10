@@ -14,7 +14,7 @@ class Heroico
 		#	operators online and other things
 		hr = @
 		setInterval ->
-			$.get "http://client.heroico.com/"+user_id+"/meta", (data) ->
+			$.getJSON "http://client.heroico.com/"+user_id+"/meta?callback=res", (data) ->
 				if data.data
 					@account_meta = data
 
