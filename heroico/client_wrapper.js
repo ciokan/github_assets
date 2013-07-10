@@ -7,6 +7,7 @@
     account_meta = null;
 
     function Heroico() {
+      this._set_metadata();
       this.create_tags();
       this.load_events();
       this.set_window_position();

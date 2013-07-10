@@ -3,6 +3,7 @@ class Heroico
 	account_meta = null
 
 	constructor: ->
+		@_set_metadata()
 		@create_tags()
 		@load_events()
 		@set_window_position()
