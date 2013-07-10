@@ -2,6 +2,9 @@
   var Heroico, load_requirements;
 
   Heroico = (function() {
+    var account_meta;
+
+    account_meta = null;
 
     function Heroico() {
       this.create_tags();
@@ -9,10 +12,38 @@
       this.set_window_position();
     }
 
+    Heroico.prototype._set_metadata = function() {
+      return setInterval(function() {
+        $.get("http://client.heroico.com/" + user_id + "/meta", function(data) {
+          if (data.data) return this.account_meta = data;
+        });
+        return this.show_status_widgets();
+      }, 3000);
+    };
+
     Heroico.prototype.set_window_position = function() {
       if (amplify.store('heroico.chat_window_open') && amplify.store('heroico.chat_window_open') === true) {
         return this.wrapper_div.addClass("open");
       }
+    };
+
+    Heroico.prototype.show_status_widgets = function() {
+      return $(".hr_status_widget").each(function() {
+        var _ref, _ref2;
+        if ((_ref = this.account_meta) != null ? (_ref2 = _ref.data) != null ? _ref2.operators_online : void 0 : void 0) {
+          return $(this).addClass("hr_online");
+        } else {
+          return $(this).addClass("hr_offline");
+        }
+      });
+    };
+
+    Heroico.prototype.hide_widget = function() {
+      return this.wrapper_div.hide();
+    };
+
+    Heroico.prototype.show_widget = function() {
+      return this.wrapper_div.show();
     };
 
     Heroico.prototype.load_events = function() {
@@ -93,8 +124,7 @@
   };
 
   load_requirements(function() {
-    var hr;
-    return hr = new Heroico();
+    return window.heroico = new Heroico();
   });
 
 }).call(this);
