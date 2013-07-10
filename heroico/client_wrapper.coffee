@@ -12,12 +12,13 @@ class Heroico
 	_set_metadata: ->
 		#	Runs a ping every x seconds to gather various info such as
 		#	operators online and other things
+		hr = @
 		setInterval ->
 			$.get "http://client.heroico.com/"+user_id+"/meta", (data) ->
 				if data.data
 					@account_meta = data
 
-			@show_status_widgets()
+			hr.show_status_widgets()
 		, 3000
 
 
