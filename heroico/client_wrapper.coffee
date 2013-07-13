@@ -32,7 +32,7 @@ class Heroico
 		#	Our javascript here will add a class to all elements matching class:
 		#	hr_status_widget stating if we have operators online or not: .hr_online/.hr_offline
 		$(".hr_status_widget").each ->
-			if @account_meta?.data?.operators_online
+			if @account_meta?.data?.has_operators_online
 				$(this).addClass "hr_online"
 			else
 				$(this).addClass "hr_offline"
@@ -58,6 +58,9 @@ class Heroico
 
 	create_tags: ->
 		self = @
+
+		chat_url = window.location.href.indexOf("localhost") != -1 ? "http://localhost:4000/"+user_id : "http://client.heroico.com/"+user_id
+
 		@wrapper_div = $('<div></div>').attr({
 			id: "hr_client_wrapper"
 		}).appendTo("body")
@@ -82,11 +85,12 @@ class Heroico
 			width = 400
 			left = (screen.width/2) - (width/2)
 			top = (screen.height/2) - (height/2)
-			newwindow = window.open "http://client.heroico.com/"+user_id,'Heroico Popup Window','screenY='+top+',screenX='+left+',height='+height+',width='+width
+
+			newwindow = window.open chat_url,'Heroico Popup Window','screenY='+top+',screenX='+left+',height='+height+',width='+width
 			newwindow.focus()
 
 		@chat_frame = $('<iframe></iframe>').attr({
-			src: "http://client.heroico.com/"+user_id
+			src: chat_url
 		}).appendTo(@wrapper_inner_div)
 
 

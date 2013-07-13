@@ -33,7 +33,7 @@
     Heroico.prototype.show_status_widgets = function() {
       return $(".hr_status_widget").each(function() {
         var _ref, _ref2;
-        if ((_ref = this.account_meta) != null ? (_ref2 = _ref.data) != null ? _ref2.operators_online : void 0 : void 0) {
+        if ((_ref = this.account_meta) != null ? (_ref2 = _ref.data) != null ? _ref2.has_operators_online : void 0 : void 0) {
           return $(this).addClass("hr_online");
         } else {
           return $(this).addClass("hr_offline");
@@ -63,8 +63,11 @@
     };
 
     Heroico.prototype.create_tags = function() {
-      var self;
+      var chat_url, self, _ref;
       self = this;
+      chat_url = (_ref = window.location.href.indexOf("localhost") !== -1) != null ? _ref : "http://localhost:4000/" + {
+        user_id: "http://client.heroico.com/" + user_id
+      };
       this.wrapper_div = $('<div></div>').attr({
         id: "hr_client_wrapper"
       }).appendTo("body");
@@ -85,11 +88,11 @@
         width = 400;
         left = (screen.width / 2) - (width / 2);
         top = (screen.height / 2) - (height / 2);
-        newwindow = window.open("http://client.heroico.com/" + user_id, 'Heroico Popup Window', 'screenY=' + top + ',screenX=' + left + ',height=' + height + ',width=' + width);
+        newwindow = window.open(chat_url, 'Heroico Popup Window', 'screenY=' + top + ',screenX=' + left + ',height=' + height + ',width=' + width);
         return newwindow.focus();
       });
       return this.chat_frame = $('<iframe></iframe>').attr({
-        src: "http://client.heroico.com/" + user_id
+        src: chat_url
       }).appendTo(this.wrapper_inner_div);
     };
 
