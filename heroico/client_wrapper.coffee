@@ -59,7 +59,7 @@ class Heroico
 	create_tags: ->
 		self = @
 
-		chat_url = (window.location.href.indexOf("localhost") != -1) ? "http://localhost:4000/"+user_id : "http://client.heroico.com/"+user_id
+		chat_url = if (window.location.href.indexOf("localhost") != -1) then "http://localhost:4000/"+user_id else "http://client.heroico.com/"+user_id
 
 		console.log(chat_url);
 
