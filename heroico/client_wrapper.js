@@ -17,7 +17,7 @@
       var hr;
       hr = this;
       return setInterval(function() {
-        $.getJSON("http://client.heroico.com/" + user_id + "/meta?callback=?", function(data) {
+        $.getJSON("http://meta.heroico.com/" + user_id + "/?callback=?", function(data) {
           if (data.data) return this.account_meta = data;
         });
         return hr.show_status_widgets();
@@ -68,6 +68,7 @@
       chat_url = (_ref = window.location.href.indexOf("localhost") !== -1) != null ? _ref : "http://localhost:4000/" + {
         user_id: "http://client.heroico.com/" + user_id
       };
+      console.log(chat_url);
       this.wrapper_div = $('<div></div>').attr({
         id: "hr_client_wrapper"
       }).appendTo("body");

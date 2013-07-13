@@ -14,7 +14,7 @@ class Heroico
 		#	operators online and other things
 		hr = @
 		setInterval ->
-			$.getJSON "http://client.heroico.com/"+user_id+"/meta?callback=?", (data) ->
+			$.getJSON "http://meta.heroico.com/"+user_id+"/?callback=?", (data) ->
 				if data.data
 					@account_meta = data
 
@@ -59,7 +59,9 @@ class Heroico
 	create_tags: ->
 		self = @
 
-		chat_url = window.location.href.indexOf("localhost") != -1 ? "http://localhost:4000/"+user_id : "http://client.heroico.com/"+user_id
+		chat_url = (window.location.href.indexOf("localhost") != -1) ? "http://localhost:4000/"+user_id : "http://client.heroico.com/"+user_id
+
+		console.log(chat_url);
 
 		@wrapper_div = $('<div></div>').attr({
 			id: "hr_client_wrapper"
