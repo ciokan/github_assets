@@ -10,10 +10,6 @@
 #hr_client_wrapper.open {
   bottom: 0;
 }
-/* line 14, scss/sass/client_wrapper.scss */
-#hr_client_wrapper.open #hr_inner #hr_toggle_handle {
-  cursor: move;
-}
 /* line 20, scss/sass/client_wrapper.scss */
 #hr_client_wrapper #hr_inner {
   position: relative;

@@ -61,8 +61,6 @@ class Heroico
 
 		chat_url = if (window.location.href.indexOf("localhost") != -1) then "http://localhost:4000/"+user_id else "http://client.heroico.com/"+user_id
 
-		console.log(chat_url);
-
 		@wrapper_div = $('<div></div>').attr({
 			id: "hr_client_wrapper"
 		}).appendTo("body")

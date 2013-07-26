@@ -66,7 +66,6 @@
       var chat_url, self;
       self = this;
       chat_url = window.location.href.indexOf("localhost") !== -1 ? "http://localhost:4000/" + user_id : "http://client.heroico.com/" + user_id;
-      console.log(chat_url);
       this.wrapper_div = $('<div></div>').attr({
         id: "hr_client_wrapper"
       }).appendTo("body");
