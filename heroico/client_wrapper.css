@@ -2,9 +2,9 @@
 #hr_client_wrapper {
   position: fixed;
   bottom: -421px;
-  right: 20px;
+  right: 30px;
   height: 450px;
-  width: 350px;
+  width: 320px;
   z-index: 9999;
   -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.75);
@@ -42,7 +42,7 @@
   margin: 0;
   padding: 0;
   height: 450px;
-  width: 350px;
+  width: 320px;
 }
 /* line 49, scss/sass/client_wrapper.scss */
 #hr_client_wrapper #hr_inner #hr_popup {

@@ -1,12 +1,12 @@
 @import "compass/css3";
 
 $height: 450px;
-$width: 350px;
+$width: 320px;
 
 #hr_client_wrapper {
 	position: fixed;
 	bottom: -421px;
-	right: 20px;
+	right: 30px;
 	height: $height;
 	width: $width;
 	z-index: 9999;
