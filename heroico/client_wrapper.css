@@ -6,18 +6,27 @@
   height: 450px;
   width: 350px;
   z-index: 9999;
+  -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.75);
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
 }
-/* line 15, scss/sass/client_wrapper.scss */
+/* line 17, scss/sass/client_wrapper.scss */
 #hr_client_wrapper.open {
   bottom: 0;
 }
-/* line 24, scss/sass/client_wrapper.scss */
+/* line 26, scss/sass/client_wrapper.scss */
 #hr_client_wrapper #hr_inner {
   position: relative;
   width: 100%;
   height: 100%;
 }
-/* line 29, scss/sass/client_wrapper.scss */
+/* line 31, scss/sass/client_wrapper.scss */
 #hr_client_wrapper #hr_inner #hr_toggle_handle {
   position: absolute;
   top: 0;
@@ -26,7 +35,7 @@
   height: 29px;
   cursor: pointer;
 }
-/* line 38, scss/sass/client_wrapper.scss */
+/* line 40, scss/sass/client_wrapper.scss */
 #hr_client_wrapper #hr_inner iframe {
   border: none;
   background: transparent;
@@ -35,7 +44,7 @@
   height: 450px;
   width: 350px;
 }
-/* line 47, scss/sass/client_wrapper.scss */
+/* line 49, scss/sass/client_wrapper.scss */
 #hr_client_wrapper #hr_inner #hr_popup {
   position: absolute;
   bottom: 8px;
