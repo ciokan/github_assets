@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 $height: 450px;
 $width: 350px;
 
@@ -7,6 +9,8 @@ $width: 350px;
 	right: 20px;
 	height: $height;
 	width: $width;
+	z-index: 9999;
+
 	
 	&.open {
 		bottom: 0;

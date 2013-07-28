@@ -1,5 +1,5 @@
 (function() {
-  var Heroico, load_requirements;
+  var Heroico, is_localhost, load_requirements;
 
   Heroico = (function() {
     var account_meta;
@@ -18,7 +18,7 @@
       hr = this;
       return setInterval(function() {
         $.getJSON("http://meta.heroico.com/accounts/" + user_id + "/?callback=?", function(data) {
-          if (data.data) return this.account_meta = data;
+          if (data.data) return account_meta = data;
         });
         return hr.show_status_widgets();
       }, 3000);
@@ -32,8 +32,8 @@
 
     Heroico.prototype.show_status_widgets = function() {
       return $(".hr_status_widget").each(function() {
-        var _ref, _ref2;
-        if ((_ref = this.account_meta) != null ? (_ref2 = _ref.data) != null ? _ref2.has_operators_online : void 0 : void 0) {
+        var _ref;
+        if (account_meta != null ? (_ref = account_meta.data) != null ? _ref.has_operators_online : void 0 : void 0) {
           return $(this).addClass("hr_online");
         } else {
           return $(this).addClass("hr_offline");
@@ -65,7 +65,7 @@
     Heroico.prototype.create_tags = function() {
       var chat_url, self;
       self = this;
-      chat_url = window.location.href.indexOf("localhost") !== -1 ? "http://localhost:4000/" + user_id : "http://client.heroico.com/" + user_id;
+      chat_url = is_localhost() ? "http://localhost:4000/" + user_id : "http://client.heroico.com/" + user_id;
       this.wrapper_div = $('<div></div>').attr({
         id: "hr_client_wrapper"
       }).appendTo("body");
@@ -98,12 +98,16 @@
 
   })();
 
+  is_localhost = function() {
+    return window.location.href.indexOf("localhost") !== -1;
+  };
+
   load_requirements = function(cb) {
     var checkReady, jquery, styles;
     styles = document.createElement("link");
     styles.setAttribute("rel", "stylesheet");
     styles.setAttribute("type", "text/css");
-    styles.setAttribute("href", "http://ciokan.github.io/github_assets/heroico/client_wrapper.css");
+    styles.setAttribute("href", is_localhost() ? "http://localhost/github_assets/heroico/client_wrapper.css" : "http://ciokan.github.io/github_assets/heroico/client_wrapper.css");
     document.getElementsByTagName("head")[0].appendChild(styles);
     if (!window.jQuery) {
       jquery = document.createElement("SCRIPT");

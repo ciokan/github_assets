@@ -16,7 +16,7 @@ class Heroico
 		setInterval ->
 			$.getJSON "http://meta.heroico.com/accounts/"+user_id+"/?callback=?", (data) ->
 				if data.data
-					@account_meta = data
+					account_meta = data
 
 			hr.show_status_widgets()
 		, 3000
@@ -32,7 +32,7 @@ class Heroico
 		#	Our javascript here will add a class to all elements matching class:
 		#	hr_status_widget stating if we have operators online or not: .hr_online/.hr_offline
 		$(".hr_status_widget").each ->
-			if @account_meta?.data?.has_operators_online
+			if account_meta?.data?.has_operators_online
 				$(this).addClass "hr_online"
 			else
 				$(this).addClass "hr_offline"
@@ -58,8 +58,8 @@ class Heroico
 
 	create_tags: ->
 		self = @
-
-		chat_url = if (window.location.href.indexOf("localhost") != -1) then "http://localhost:4000/"+user_id else "http://client.heroico.com/"+user_id
+		
+		chat_url = if is_localhost() then "http://localhost:4000/"+user_id else "http://client.heroico.com/"+user_id
 
 		@wrapper_div = $('<div></div>').attr({
 			id: "hr_client_wrapper"
@@ -93,12 +93,14 @@ class Heroico
 			src: chat_url
 		}).appendTo(@wrapper_inner_div)
 
+is_localhost = ->
+	window.location.href.indexOf("localhost") != -1
 
 load_requirements = (cb)->
 	styles = document.createElement("link")
 	styles.setAttribute("rel", "stylesheet")
 	styles.setAttribute("type", "text/css")
-	styles.setAttribute("href", "http://ciokan.github.io/github_assets/heroico/client_wrapper.css")
+	styles.setAttribute("href", if is_localhost() then "http://localhost/github_assets/heroico/client_wrapper.css" else "http://ciokan.github.io/github_assets/heroico/client_wrapper.css")
 
 	document.getElementsByTagName("head")[0].appendChild styles
 
